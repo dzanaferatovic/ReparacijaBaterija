@@ -1,11 +1,13 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	<title>Battery repair</title>
-	<link rel="stylesheet" type="text/css" href="stil.css">
-	<link rel="stylesheet" type="text/css" href="logo.css">
+	<link rel="stylesheet" type="text/css" href="Stilovi/stil.css">
+	<link rel="stylesheet" type="text/css" href="Stilovi/logo.css">
 </head>
 
 <body>
@@ -23,19 +25,28 @@
 		</div>
 		
 		<ul>
-			<li><a href="pocetna.html">Pocetna</a></li>
+			<li><a href="pocetna.php">Pocetna</a></li>
 			<li class="aktivna"> O nama </li>
-			<li> <a href="cjenovnik.html"> Cjenovnik </a> </li>
-			<li> <a href="kontakt.html"> Kontakt </a> </li>
-			<li> <a href="vanjskilinkovi.html"> Vanjski linkovi </a> </li>
+			<li> <a href="cjenovnik.php"> Cjenovnik </a> </li>
+			<li> <a href="kontakt.php"> Kontakt </a> </li>
+			<li> <a href="vanjskilinkovi.php"> Vanjski linkovi </a> </li>
+			<?php
+        		if(isset($_SESSION['user'])){
+        			echo "<li> <a href='dodajnovost.php'>Dodaj novost</a><li>";
+          			echo "<li> <a href='login.php?potvrdi=logout'>Logout</a> <li>";
+          		}
+        		else{
+          			echo "<li> <a href='login.php'>Login</a> </li>";
+        		}
+       		?>
 		</ul>
 	</div>
 	
 	<div class="sredina">
 		<div class="kolona-lijeva">
-			<h3>O "Battery repair"</h3>
+			<div id="onNaslov">O "Battery repair"</div>
 				<div class="vijest">
-					<img src="slika2.jpg" alt="slika">
+					<img src="slike/slika2.jpg" alt="slika">
 					<p> 
 						"Battery repair" je firma koja se bavi reparacijom laptop i akku baterija.
 						Nastala je 2015. godine i od tada... bla bla bla HTML5 is a markup language used for structuring 

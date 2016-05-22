@@ -20,6 +20,7 @@ body {
 	position: fixed;
 	height:30%;
 	width:100%;
+	z-index: 110;
 }
 
 .meni ul {
@@ -27,7 +28,6 @@ body {
 	display:block;
 	position:absolute;
 	list-style-type: none;
-    z-index:110;
 	padding-top:5px;
 	margin-top:10%;
 	min-width:100%;
@@ -77,7 +77,7 @@ body {
 .sredina {
 	background-color:#c0c0c0;
 	width:100%;
-	padding-top:180px;
+	padding-top:15%;
 	background-color:#c0c0c0;
 	overflow:hidden;
 	overflow-y:auto;
@@ -93,15 +93,31 @@ body {
 	padding:5px 15px;
 }
 
+#odabirFiltera {
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left:5px;
+	width: 35%;
+	font-family: Arial;
+	font-size: 16px;
+}
+
+#odabirFiltera select {
+	font-size: 16px;
+}
+
+
 h3 {
 	font-family:Rockwell;
-	padding-top:5%;
 	font-size:20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
 }
 
 .vijest {
-	padding-top:5px;
-	padding-bottom:5px;
+	padding-top:10px;
+	padding-bottom:10px;
 	padding-left:5px;
 	padding-right:5px;
 }
@@ -109,11 +125,18 @@ h3 {
 .vijest img{
 	float:right;
 	width:20%;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-right: 5px;
+	padding-left: 5px;
 }
 
 .vijest p {
 	font-family:Arial;
 	font-size:16px;
+}
+
+#v1,#v2,#v3,#v4,#v5,#v6,#v7,#v8,#v9,#v10,#v11,#v12,#v13{
 }
 
 .kolona-desna {
@@ -149,9 +172,11 @@ h3 {
 	font-size:18px;
 	text-align:center;
 	width:20%;
+	padding-bottom: 5px;
 }
 
 #komentar{
+	padding-top: 5px;
 	margin-top:50px;
 	margin-left:8%;
 	height: 70%;
@@ -170,8 +195,26 @@ h3 {
 	font-size:18px;
 }
 
+#onNaslov {
+	padding-top: 5%;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	font-family: Rockwell;
+	font-size:20px;
+	font-weight: bold;
+}
+
 
 /*----------cjenovnik--------*/
+#cjNaslov {
+	padding-top: 5%;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	font-family: Rockwell;
+	font-size:20px;
+	font-weight: bold;
+}
+
 #tabela {
 	font-family:Arial;
 	border:2px solid;
@@ -291,3 +334,27 @@ label {
  #linkovi a:hover img {
  display:block;
  }
+
+/*----LOGIN----*/
+#buttonLogin {
+	width:100px;
+	height:30px;
+	margin-left:40%;
+	border-radius:4px;
+}
+
+/*----unosNovosti----*/
+#lblnovaN {
+	font-family:Arial;
+	font-size:18px;
+	text-align:center;
+	width:100%;
+	padding-bottom: 5px;
+}
+
+#txtnovaN{
+	width:90%;
+	font-family:Arial;
+	font-size:16px;
+}
+
