@@ -1,8 +1,19 @@
-<?php session_start(); ?>
+<?php session_start(); 
+date_default_timezone_set("Europe/Sarajevo"); 
+?>
 
 <?php
-if(isset($_POST['novostNova']) && $_POST['unesi']=="Spasi") {
-  $novosti= array(htmlentities($_REQUEST['novostNova']),date('D M d Y H:i:s O'),htmlentities($_SESSION['user']));
+if(isset($_POST['nazivNove']) && isset($_POST['tekstNove']) && $_POST['unesi']=="Spasi") {
+  if($_POST['slikaURL']!='' && $_POST['slikaURL']!=' ') {
+    $novosti= array(htmlentities($_REQUEST['nazivNove']),htmlentities($_REQUEST['tekstNove']),htmlentities($_REQUEST['slikaURL']),date('d.m.Y H:i:s'),htmlentities($_SESSION['user']),htmlentities($_REQUEST['telefonNove']));
+  }
+
+  else {
+    $str="Slike/slika.jpg";
+    $novosti= array(htmlentities($_REQUEST['nazivNove']),htmlentities($_REQUEST['tekstNove']),$str,date('d.m.Y H:i:s'),htmlentities($_SESSION['user']),htmlentities($_REQUEST['telefonNove']));
+  }
+
+
   $file=fopen("Podaci/novosti.csv","a");
 
   if(fputcsv($file,$novosti)){
@@ -27,6 +38,7 @@ if(isset($_POST['novostNova']) && $_POST['unesi']=="Spasi") {
  <title>Battery repair</title>
  <link rel="stylesheet" type="text/css" href="Stilovi/stil.css">
  <link rel="stylesheet" type="text/css" href="Stilovi/logo.css">
+ <script type="text/javascript" src="Skripte/unos.js"></script>
 </head>
 
 <body>
@@ -56,10 +68,36 @@ if(isset($_POST['novostNova']) && $_POST['unesi']=="Spasi") {
 
 
 <div class="sredina">
-  <form id="forma" action="dodajnovost.php" method="post">
+  <form id="formaDodajNovost" action="dodajnovost.php" method="post">
 
-   <p id="lblnovaN">Unesite tekst nove novosti:</p>
-   <textarea id="txtnovaN" name="novostNova" cols="80" rows="15" > </textarea>
+   <div class="unos">
+   <label>Naziv novosti: </label>
+   <input type="text" id="nazivNove" name="nazivNove" placeholder="Nova novost--najmanje 2 slova" onkeyup="validirajUnosNazivaNovosti(this.value)" />
+   </div>
+   <br>
+
+   <div class="unos">
+   <label>Tekst novosti:</label>
+   <textarea id="tekstNove" name="tekstNove" cols="80" rows="20" > </textarea>
+   </div>
+   <br>
+
+   <div class="unos">
+   <label> Slika: </label>
+   <input type="text" id="slikaURL" name="slikaURL" placeholder="http://slike.ba/slika.png--nije obavezno" />
+   </div>
+   <br>
+
+   <div class="unos">
+   <label> Dvoslovni kod drzave: </label>
+   <input type="text" id="dvoslovni" placeholder="BA--tacno dva slova" onkeyup="validirajDvoslovnu(this.value)" />
+   </div>
+   <br>
+
+   <div class="unos">
+   <label> Broj telefona: </label>
+   <input type="text" id="telefonNove" name="telefonNove" placeholder="+38733123123" onkeyup="validirajPozivniBroj(this.value)" />
+   </div>
    <br>
 
    <input type="submit" id="buttonLogin" value="Spasi" name="unesi"/> 

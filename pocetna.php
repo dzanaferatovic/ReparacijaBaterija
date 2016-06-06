@@ -47,8 +47,8 @@
 		<div class="kolona-lijeva">
 			<h3>Novosti</h3>
 			<div id="odabirFiltera">
-	         Filter:
-	            <select onchange="filtriraj(this)">
+	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Filter:
+	            <select id="odaberi" onchange="filtriraj()">
 	                <option value="sve">Sve novosti</option>
 	                <option value="danasnje">Današnje novosti</option>
 	                <option value="sedmicne">Sedmične novosti</option>
@@ -56,175 +56,76 @@
 	            </select>
         	</div>
 
+        	<form id="formaSortiranja" action="pocetna.php" method="get">
+        	<div id="odabirFiltera">
+        	Sortiraj po:
+        	<a href="pocetna.php">datumu&nbsp;</a>
+        	<a href="pocetna.php?sortiranje=abecedno">abecedi</a>
 
-        		<div class="vijest">
-					<div id="v1"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p> 
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>		
-				</div>
+        	</div>
+        	</form>
 
-				<div class="vijest">
-					<div id="v2"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p> 
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>			
-				</div>
-				
-				<div class="vijest">
-					<div id="v3">  </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p> 
-						Cascading Style Sheets (CSS) is a style sheet language used for describing the presentation of a document 
-						written in a markup language. Although most often used to set the visual style of web pages and user interfaces 
-						written in HTML and XHTML, the language can be applied to any XML document, including plain XML, SVG and XUL, 
-						and is applicable to rendering in speech, or on other media. Along with HTML and JavaScript, CSS is a cornerstone 
-						technology used by most websites to create visually engaging webpages, user interfaces for web applications, and user 
-						interfaces for many mobile applications.
-					</p>				
-				</div>
-				
-				<div class="vijest">
-					<div id="v4"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>
-				</div>
+        	
+        	<?php
+        	if(!file_exists("Podaci/novosti.csv")){
+        		exit();
+        	}
 
-				<div class="vijest">
-					<div id="v5"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>				
-				</div>
+        	$file=fopen("Podaci/novosti.csv","r");
+        	$novosti=array();
 
-				<div class="vijest">
-					<div id="v6"></div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>					
-				</div>
+        	while(!feof($file)) {
+        		$novostN=fgetcsv($file);
 
-				<div class="vijest">
-					<div id="v7"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>					
-				</div>
+        		if($novostN[0]==' ') {
+        			print "<script type='text/javascript'>alert('Nema novosti');</script>";
+        		}
+        		else if($novostN[0]!='') {
+        			$novosti[]=$novostN;
+        		}
+        	}
+        	fclose($file);
 
-				<div class="vijest">
-					<div id="v8"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>					
-				</div>
+        	
+        	function poDatumu($novost1, $novost2) {
+        		$datumPrve=strtotime($novost1[3]);
+        		$datumDruge=strtotime($novost2[3]);
+        		return $datumDruge>$datumPrve;
+        	}
 
-				<div class="vijest">
-					<div id="v9"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>					
-				</div>
+        	function poNaslovu($novost1, $novost2) {
+        		$naslovPrve=$novost1[0];
+        		$naslovDruge=$novost2[0];
 
-				<div class="vijest">
-					<div id="v10"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>					
-				</div>
+        		return $naslovDruge<$naslovPrve;
+        	}
 
-				<div class="vijest">
-					<div id="v11"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>
-				</div>
+			if(isset($_GET['sortiranje']) && $_GET['sortiranje']=="abecedno") {
+				//sortirajpoabecedi
+				usort($novosti,"poNaslovu");
 
-				<div class="vijest">
-					<div id="v12"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>
-				</div>
+			}
+			else {
+				//sortiraj po datumu
+				usort($novosti,"poDatumu");
+		
+			}
 
-				<div class="vijest">
-					<div id="v13"> </div>
-					<img src="Slike/slika.jpg" alt="slika">
-					<p>
-						HTML5 is a markup language used for structuring and presenting content on the World Wide Web. 
-						It is the fifth and current version of the HTML standard.
-						It was published in October 2014 by the World Wide Web Consortium (W3C) to improve the language with 
-						support for the latest multimedia, while keeping it easily readable by humans - and consistently understood by 
-						computers and devices such as web browsers, parsers, etc. HTML5 is intended to subsume not only HTML 4, 
-						but also XHTML 1 and DOM Level 2 HTML.
-					</p>
-				</div>
+        	for($i=0; $i<count($novosti); $i++) {
+        		print "<div class=\"vijest\">";
+        		print "<p class=\"nazivVijesti\">";
+        		print $novosti[$i][0];
+        		print "</p>";
+        		print "<img src=".$novosti[$i][2]." alt=\"slika\">";
+        		print "<p class=\"vrijemeRijecima\"> </p>";
+        		print "<p>";
+        		print $novosti[$i][1];
+        		print "</p>";
+        		print "<p> Autor:".$novosti[$i][4]."</p>";
+        		print "<p class=\"vrijemeVijesti\">".$novosti[$i][3]."</p>";
+        		print "</div>";
+        	}
+        	?>    	
 		</div>
 		
 		<div class="kolona-desna">

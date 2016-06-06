@@ -46,17 +46,17 @@
 	<div class="sredina">
 		<form id="forma">
 			<label for="ime">Ime: </label>
-			<input type="text" id="ime" placeholder="Hamo" onkeyup="return validirajUnosImena(this.value)" />
+			<input type="text" id="ime" placeholder="Hamo" onkeyup="validirajUnosImena(this.value)" />
 			<br>
 			<br>
 			
 			<label for="prezime">Prezime: </label>
-			<input type="text" id="prezime" placeholder="Hamić" onkeyup="return validirajUnosPrezimena(this.value)"/>
+			<input type="text" id="prezime" placeholder="Hamić" onkeyup="validirajUnosPrezimena(this.value)"/>
 			<br>
 			<br>
 			
-			<label for="mail">E-mail: </label>
-			<input type="email" id="mail" placeholder="text@gmail.com" onkeyup="return validirajUnosEmaila(this.value)">
+			<label>E-mail: </label>
+			<input type="text" id="eemail" placeholder="text@gmail.com" onkeyup="validirajUnosEmaila(this.value)"/>
 			<br>
 			<br>
 			

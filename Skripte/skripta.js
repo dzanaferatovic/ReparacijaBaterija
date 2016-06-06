@@ -1,20 +1,29 @@
 window.onload=function ()
 {
-	document.getElementById("v1").innerHTML=vrijeme(2015,4-1,25,16,16,16);
-	document.getElementById("v2").innerHTML=vrijeme(2016,4-1,27,11,17,2);
-	document.getElementById("v3").innerHTML=vrijeme(2016,4-1,3,15,22,11);
-	document.getElementById("v4").innerHTML=vrijeme(2016,4-1,28,21,11,10);
-	document.getElementById("v5").innerHTML=vrijeme(2016,5-1,1,11,15,2);
-	document.getElementById("v6").innerHTML=vrijeme(2016,5-1,1,17,17,2);
-	document.getElementById("v7").innerHTML=vrijeme(2016,5-1,2,20,17,20);
-	document.getElementById("v8").innerHTML=vrijeme(2016,5-1,2,10,17,20);
-	document.getElementById("v9").innerHTML=vrijeme(2016,5-1,10,20,17,20);
-	document.getElementById("v10").innerHTML=vrijeme(2016,5-1,15,22,17,20);
-	document.getElementById("v11").innerHTML=vrijeme(2016,5-1,22,10,17,20);
-	document.getElementById("v12").innerHTML=vrijeme(2016,5-1,22,17,21,20);
-	document.getElementById("v13").innerHTML=vrijeme(2016,5-1,22,17,49,20);
+	var vijesti=document.getElementsByClassName("vijest");
+
+	for(var i=0; i<vijesti.length; i++) {
+		var vrijemeTrenutne=stringUDatum(vijesti[i].childNodes[5].innerHTML);
+		vijesti[i].childNodes[2].innerHTML=vrijeme(vrijemeTrenutne);
+	}
 }
 
+function stringUDatum(stringic) {
+	var datumvrijeme=stringic.split(" ");
+	var dmy=datumvrijeme[0].split(".");
+	var hms=datumvrijeme[1].split(":");
+
+	var dancic=parseInt(dmy[0]);
+	var mjesecic=parseInt(dmy[1])-1;
+	var godinica=parseInt(dmy[2]);
+	var satic=parseInt(hms[0]);
+	var minutice=parseInt(hms[1]);
+	var sekundice=parseInt(hms[2]);
+
+	var datum=new Date(godinica,mjesecic,dancic,satic,minutice,sekundice);
+
+	return datum;
+}
 
 function razlikaUSekundama(prvi, drugi) 
 {
@@ -26,31 +35,30 @@ function razlikaUSekundama(prvi, drugi)
 
 function uMinute(vrSekunde)
 {
-	var min=Math.round(vrSekunde/60);
+	var min=Math.floor(vrSekunde/60);
 	return min.toString();
 }
 
 function uSate(vrSekunde)
 {
-	var sat = Math.round(vrSekunde / 3600);
+	var sat = Math.floor(vrSekunde / 3600);
 	return sat.toString();
 }
 
 function uDane(vrSekunde)
 {
-	var dan=Math.round(vrSekunde/86400);
+	var dan=Math.floor(vrSekunde/86400);
 	return dan.toString();
 }
 
 function uSedmice(vrSekunde)
 {
-	var sed=Math.round(vrSekunde/604800);
+	var sed=Math.floor(vrSekunde/604800);
 	return sed.toString();
 }
 
-function vrijeme(y,m,d,h,min,s)	//mj idu od 0(Januar)..
+function vrijeme(vrObjave)	//mj idu od 0(Januar)..
 {
-	var vrObjave=new Date(y,m,d,h,min,s);
 	var trenutno=new Date(); //trenutno vrijeme
 
 	var razlika=razlikaUSekundama(vrObjave, trenutno);
@@ -102,7 +110,117 @@ function vrijeme(y,m,d,h,min,s)	//mj idu od 0(Januar)..
 		{
 			ispis="";
 		}
-
-		ispis+=" ("+vrObjave.getDate()+"."+vrObjave.getMonth()+"."+vrObjave.getFullYear()+" "+vrObjave.getHours()+":"+vrObjave.getMinutes()+":"+vrObjave.getSeconds()+")";
 	return ispis;
 }
+
+/*function prikaziDanasnje() {
+	var sada=new Date();
+	var danSada=sada.getUTCDate();
+	var mjesecSada=sada.getUTCMonth();
+	var godinaSada=sada.getUTCFullYear();
+
+	var vijesti=document.getElementsByClassName("vijest");
+
+	for(var i=0; i<vijesti.length; i++) {
+		var vrijemeTrenutne=stringUDatum(vijesti[i].childNodes[3].innerHTML);
+		if(vrijemeTrenutne.getUTCDate()==danSada && vrijemeTrenutne.getUTCMonth()==mjesecSada && vrijemeTrenutne.getUTCFullYear()==godinaSada)
+		{
+			vijesti[i].style.display="inline-block";
+		}
+
+		else vijesti[i].style.display="none";
+	}
+}*/
+
+function prikaziDanasnje() {
+	var sada=new Date();
+	var vijesti=document.getElementsByClassName("vijest");
+
+	for(var i=0; i<vijesti.length; i++) {
+		var vrijemeTrenutne=stringUDatum(vijesti[i].childNodes[5].innerHTML);
+		var razlikaus=razlikaUSekundama(vrijemeTrenutne,sada);
+
+		var intSati=parseInt(uSate(razlikaus));
+
+		if(intSati<24)
+		{
+			vijesti[i].style.display="inline-block";
+		}
+		else vijesti[i].style.display="none";
+	}
+}
+
+function prikaziSedmicne() {
+	var sada=new Date();
+	var vijesti=document.getElementsByClassName("vijest");
+
+	for(var i=0; i<vijesti.length; i++) {
+		var vrijemeTrenutne=stringUDatum(vijesti[i].childNodes[5].innerHTML);
+		var razlikaus=razlikaUSekundama(vrijemeTrenutne,sada);
+
+		if(uSedmice(razlikaus)=="0" || uSedmice(razlikaus)=="1")
+		{
+			vijesti[i].style.display="inline-block";
+		}
+
+		else vijesti[i].style.display="none";
+	}
+}
+
+function prikaziMjesecne() {
+	var sada=new Date();
+	var vijesti=document.getElementsByClassName("vijest");
+
+	for(var i=0; i<vijesti.length; i++) {
+		var vrijemeTrenutne=stringUDatum(vijesti[i].childNodes[5].innerHTML);
+
+		if(vrijemeTrenutne.getUTCMonth()==sada.getUTCMonth() && vrijemeTrenutne.getUTCFullYear()==sada.getUTCFullYear())
+		{
+			vijesti[i].style.display="inline-block";
+		}
+
+		else vijesti[i].style.display="none";
+	}
+
+}
+
+function prikaziSve() {
+	var vijesti=document.getElementsByClassName("vijest");
+
+	for(var i=0; i<vijesti.length; i++) {
+		vijesti[i].style.display="inline-block";
+	}
+}
+
+function filtriraj() {
+	odabrana=document.getElementById("odaberi").value;
+	if(odabrana=="danasnje") {
+		prikaziDanasnje();
+	}
+
+	else if(odabrana=="sedmicne") {
+		prikaziSedmicne();
+	}
+
+	else if(odabrana=="mjesecne") {
+		prikaziMjesecne();
+	} 
+
+	else {
+		prikaziSve();
+	}
+}
+
+/*function sortiraj() {
+	odabrana=document.getElementById("odaberiSort").value;
+
+	if(odabrana=="poabecedi") {
+		window.location.href="pocetna.php?odabrana=poabecedi";
+	}
+
+	else {
+		window.location.href="pocetna.php";
+	}
+}*/
+
+

@@ -90,20 +90,39 @@ body {
 	width:70%;
 	height:100%;
 	float:left;
-	padding:5px 15px;
+	padding-left:10px;
 }
 
 #odabirFiltera {
-	padding-top: 5px;
 	padding-bottom: 5px;
 	padding-left:5px;
-	width: 35%;
+	width: 100%;
 	font-family: Arial;
-	font-size: 16px;
+	font-size: 19px;
 }
 
 #odabirFiltera select {
+	width:15%;
+	font-family: Arial;
+	font-size: 15px;
+}
+
+#odabirFiltera a {
 	font-size: 16px;
+	font-family: Rockwell;
+	width:15%;
+	padding-left:2px;
+	text-decoration:none;
+	color:black;
+}
+
+#odabirFiltera a:visited {
+	text-decoration:none;
+}
+
+#odabirFiltera a:hover {
+	text-decoration:none;
+	font-size:18px;
 }
 
 
@@ -116,27 +135,45 @@ h3 {
 }
 
 .vijest {
-	padding-top:10px;
-	padding-bottom:10px;
 	padding-left:5px;
 	padding-right:5px;
+	padding-bottom: 5px;
+	border:1px solid;
+	width:100%;
+	display: inline-block;
+	font-family:Arial;
+	font-size:14px;
+}
+
+.onamatekst {
+	padding-left:5px;
+	padding-right:5px;
+	width:100%;
+	display: inline-block;
+}
+
+.nazivVijesti {
+	font-style: Rockwell;
+	font-size: 15px;
+	width:70%;
+	font-weight: bold;
 }
 
 .vijest img{
 	float:right;
 	width:20%;
-	padding-top: 5px;
-	padding-bottom: 5px;
-	padding-right: 5px;
-	padding-left: 5px;
+	transition: transform .2s ease-in-out;
+}
+
+.onamatekst img {
+	float:right;
+	width:30%;
+	transition: transform .2s ease-in-out;
 }
 
 .vijest p {
-	font-family:Arial;
-	font-size:16px;
-}
-
-#v1,#v2,#v3,#v4,#v5,#v6,#v7,#v8,#v9,#v10,#v11,#v12,#v13{
+	padding: 0px;
+	width:70%;
 }
 
 .kolona-desna {
@@ -217,7 +254,6 @@ h3 {
 
 #tabela {
 	font-family:Arial;
-	border:2px solid;
 	width:80%;
 	height:80%;
 	margin-right:10%;
@@ -344,17 +380,49 @@ label {
 }
 
 /*----unosNovosti----*/
-#lblnovaN {
-	font-family:Arial;
-	font-size:18px;
-	text-align:center;
-	width:100%;
-	padding-bottom: 5px;
+
+#formaDodajNovost {
+	font-family:Rockwell;
+	width:50%;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:5%;
+	background-color:#606060;
+	padding-bottom:20px;
+	padding-top:20px;
+	padding-left:20px;
+	padding-right:0px;
+	border-radius:5px;
+	border:3px solid;	
 }
 
-#txtnovaN{
-	width:90%;
-	font-family:Arial;
-	font-size:16px;
+.unos {
+	display: block;
+	width: 100%;
+}
+
+.unos>label {
+	display: block;
+	width:85%;
+	padding:2px;
+	position: relative;
+	margin-left:5%;
+}
+
+#formaDodajNovost input[type="text"] {
+	display: block;
+	padding:2px;
+  	margin-left:5%;
+    position: relative;
+    width: 85%;
+    font-size:15px;
+}
+
+#formaDodajNovost textarea {
+	width: 85%;
+	padding: 5px;
+	overflow: hidden;
+	margin-left:5%;
+	font-size:15px;
 }
 

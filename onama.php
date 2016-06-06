@@ -45,7 +45,7 @@
 	<div class="sredina">
 		<div class="kolona-lijeva">
 			<div id="onNaslov">O "Battery repair"</div>
-				<div class="vijest">
+				<div class="onamatekst">
 					<img src="slike/slika2.jpg" alt="slika">
 					<p> 
 						"Battery repair" je firma koja se bavi reparacijom laptop i akku baterija.
