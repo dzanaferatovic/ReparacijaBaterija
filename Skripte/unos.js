@@ -89,7 +89,7 @@ function validirajPozivniBroj(uneseni) {
 	var dvoslovniKod=document.getElementById("dvoslovni").value;
 
 	if((telefon=="" || telefon==" ") && (dvoslovniKod!="" || dvoslovniKod!=" ")) document.getElementById("telefonNove").style.backgroundColor="white";
-	if(dvoslovniKod=="" || dvoslovniKod==" ") document.getElementById("telefonNove").style.backgroundColor="red";
+	else document.getElementById("telefonNove").style.backgroundColor="red";
 
 	ajax.onreadystatechange=function() {
 	if (ajax.readyState == 4 && ajax.status == 200) {
@@ -108,8 +108,8 @@ function validirajPozivniBroj(uneseni) {
 		}
 
 		else if(ajax.readyState == 4 && ajax.status == 200) alert("Greska:nepoznat URL");
-
-    ajax.open("GET","https://restcountries.eu/rest/v1/alpha?codes="+dvoslovniKod,true);
-	ajax.send();
 	}
+
+	ajax.open("GET","https://restcountries.eu/rest/v1/alpha?codes="+dvoslovniKod,true);
+	ajax.send();
 }

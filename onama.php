@@ -46,7 +46,7 @@
 		<div class="kolona-lijeva">
 			<div id="onNaslov">O "Battery repair"</div>
 				<div class="onamatekst">
-					<img src="slike/slika2.jpg" alt="slika">
+					<img src="Slike/slika2.jpg" alt="slika">
 					<p> 
 						"Battery repair" je firma koja se bavi reparacijom laptop i akku baterija.
 						Nastala je 2015. godine i od tada... bla bla bla HTML5 is a markup language used for structuring 
